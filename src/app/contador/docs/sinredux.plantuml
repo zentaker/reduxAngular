@@ -1,0 +1,22 @@
+@startuml
+actor Usuario
+participant "AppComponent" as App
+participant "HijoComponent" as Hijo
+participant "NietoComponent" as Nieto
+
+Usuario -> App : click(incrementar/decrementar)
+App -> App : Actualiza contador
+
+App -> Hijo : [contador]="contador"
+Hijo -> Nieto : [contador]="contador"
+
+Usuario -> Hijo : click(multiplicar/dividir)
+Hijo -> Hijo : Actualiza contador
+Hijo -> App : cambioContador.emit(contador)
+
+Usuario -> Nieto : click(reset)
+Nieto -> Nieto : Actualiza contador
+Nieto -> Hijo : contadorcambio.emit(0)
+Hijo -> App : cambioContador.emit(contador)
+
+@enduml
