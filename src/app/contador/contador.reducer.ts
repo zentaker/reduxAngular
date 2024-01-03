@@ -1,7 +1,7 @@
 //el que va a recivir las acciones 
 
 import { Action, createReducer, on } from "@ngrx/store";
-import { decrementar, incrementar } from "./contador.actions";
+import { decrementar, dividir, incrementar, multiplicar, reset } from "./contador.actions";
 
 /* export function contadorReducer(state: number = 10, action: Action){
     //operaciones autonomas
@@ -26,5 +26,8 @@ export const initialState = 20;
 export const contadorReducer = createReducer(
   initialState,
   on(incrementar, (state) => state + 1),
-  on(decrementar, (state) => state - 1)
+  on(decrementar, (state) => state - 1),
+  on(reset, state => initialState),
+  on(multiplicar, (state, props )=> state * props.numero),
+  on(dividir, (state, props )=> state / props.numero)
 );
